@@ -82,9 +82,15 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     bar.barTintColor = _navItem.barTintColor;
     bar.tintColor = _navItem.tintColor;
     bar.translucent = _navItem.translucent;
+
+    NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] init];
     if (_navItem.titleTextColor) {
-      [bar setTitleTextAttributes:@{NSForegroundColorAttributeName : _navItem.titleTextColor}];
+      textAttributes[NSForegroundColorAttributeName] = _navItem.titleTextColor;
     }
+    if (_navItem.titleFont) {
+      textAttributes[NSFontAttributeName] = _navItem.titleFont;
+    }
+    bar.titleTextAttributes = (_navItem.titleTextColor || _navItem.titleFont) ? textAttributes : nil;
 
     UINavigationItem *item = self.navigationItem;
     item.title = _navItem.title;

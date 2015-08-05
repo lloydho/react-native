@@ -29,6 +29,23 @@ RCT_EXPORT_VIEW_PROPERTY(translucent, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(title, NSString)
 RCT_EXPORT_VIEW_PROPERTY(titleTextColor, UIColor)
 
+RCT_CUSTOM_VIEW_PROPERTY(titleFontSize, CGFloat, RCTNavItem)
+{
+  view.titleFont = [RCTConvert UIFont:view.titleFont withSize:json ?: @(defaultView.titleFont.pointSize)];
+}
+RCT_CUSTOM_VIEW_PROPERTY(titleFontWeight, NSString, RCTNavItem)
+{
+  view.titleFont = [RCTConvert UIFont:view.titleFont withWeight:json]; // defaults to normal
+}
+RCT_CUSTOM_VIEW_PROPERTY(titleFontStyle, NSString, RCTNavItem)
+{
+  view.titleFont = [RCTConvert UIFont:view.titleFont withStyle:json]; // defaults to normal
+}
+RCT_CUSTOM_VIEW_PROPERTY(titleFontFamily, NSString, RCTNavItem)
+{
+  view.titleFont = [RCTConvert UIFont:view.titleFont withFamily:json ?: defaultView.titleFont.familyName];
+}
+
 RCT_EXPORT_VIEW_PROPERTY(backButtonIcon, UIImage)
 RCT_EXPORT_VIEW_PROPERTY(backButtonTitle, NSString)
 

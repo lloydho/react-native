@@ -61,6 +61,10 @@ var RCTNavigatorItem = createReactNativeComponentClass({
     translucent: true,
     navigationBarHidden: true,
     titleTextColor: true,
+    titleFontFamily: true,
+    titleFontSize: true,
+    titleFontStyle: true,
+    titleFontWeight: true,
     style: true,
   },
   uiViewClassName: 'RCTNavItem',
@@ -301,6 +305,17 @@ var NavigatorIOS = React.createClass({
      * The text color of the navigation bar title
      */
     titleTextColor: PropTypes.string,
+
+    /**
+     * The font of the navigation bar title
+     */
+    titleFontFamily: PropTypes.string,
+    titleFontSize: PropTypes.number,
+    titleFontStyle: PropTypes.oneOf(['normal', 'italic']),
+    titleFontWeight: PropTypes.oneOf(
+      ['normal' /*default*/, 'bold',
+       '100', '200', '300', '400', '500', '600', '700', '800', '900']
+    ),
 
     /**
      * A Boolean value that indicates whether the navigation bar is translucent
@@ -643,7 +658,12 @@ var NavigatorIOS = React.createClass({
           tintColor={this.props.tintColor}
           barTintColor={this.props.barTintColor}
           translucent={this.props.translucent !== false}
-          titleTextColor={this.props.titleTextColor}>
+          titleTextColor={this.props.titleTextColor}
+          titleFontFamily={this.props.titleFontFamily}
+          titleFontSize={this.props.titleFontSize}
+          titleFontStyle={this.props.titleFontStyle}
+          titleFontWeight={this.props.titleFontWeight}
+          >
           <Component
             navigator={this.navigator}
             route={route}
